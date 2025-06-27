@@ -64,3 +64,19 @@ The VM runs inside a secure network (VPC), can talk to other parts of the cloud,
 - **Zones** help in distributing services so that even if one zone goes down, the app keeps working.
 - Using multiple regions and zones makes apps faster and more reliable worldwide.
 
+# Day2
+# Core Concept Questions
+**Why is it dangerous to assign Editor role to all users in a production environment?**
+Giving everyone the Editor role is risky because it gives them permission to change, delete, or create almost anything in the project. Even by mistake, a user could stop services, break resources, or cause data loss. In production, this can lead to serious downtime or security issues. Instead, it's safer to give each person only the permissions they really need.
+
+**How do service accounts differ from user accounts in managing backend services?**
+A user account belongs to a real person and is used for things like logging in to the console. A service account is used by software or virtual machines (VMs) to access other GCP services, such as reading from a storage bucket or writing logs, without requiring a person to log in. Service accounts help automate backend tasks securely.
+
+**What practices help secure IAM in a multi-project GCP setup?**
+To keep IAM safe across many projects:
+Use the principle of least privilege: give only the permissions needed.
+Create custom roles for fine control.
+Use folders and organisation policies to manage permissions from the top down.
+Avoid using broad roles like Editor or Owner.
+Regularly review IAM policies to check for over-permissioned accounts.
+Use separate service accounts for different apps or environments.
