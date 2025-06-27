@@ -80,3 +80,29 @@ Use folders and organisation policies to manage permissions from the top down.
 Avoid using broad roles like Editor or Owner.
 Regularly review IAM policies to check for over-permissioned accounts.
 Use separate service accounts for different apps or environments.
+
+# IAM Policy
+In this exercise, IAM policies were used to control who can access what in the GCP project. The goal was to make sure that each user or service only had the permissions they truly needed, nothing more.
+
+IAM policies work by linking a role to a principal (like a user or service account). When assigning a role, the policy gives that person or service certain permissions to interact with Google Cloud resources.
+
+For example:
+I created a custom role called TestRoleExercise2, which only has the permission to view Compute Engine instances. This role was then assigned to a service account that needs to read VM information, but not change anything.
+I also assigned the basic Viewer role to a test user. This lets them view resources across the project, but not make any changes.
+By applying these policies:
+- I followed the principle of least privilege, which helps keep the environment secure.
+- I avoided using broad roles like Editor or Owner, as they give too much access.
+- Each role was assigned a clear purpose, either for viewing only or for a specific task.
+
+In short, IAM policies were used to make sure that everyone and everything only got access to exactly what was needed, which is a key security practice in GCP.
+
+# Assigning IAM Roles/Permissions
+To assign permissions, I went to IAM, then selected Grant Access, selected the project, and added a new principal. This principal could be either a Google account (such as a Gmail ID) or a GCP-managed identity, like a service account.
+
+After adding the principal, I selected a role by navigating to the "Basic" category and choosing the Viewer role.
+The Viewer role was selected because it allows the user to see project resources but not make any changes. This ensures that users can monitor or check configurations without the ability to modify, delete, or manage permissions, helping to keep the environment secure.
+
+Additionally, I created a custom role named TestRoleExercise2, which includes only the compute.instances.list permission. This custom role was assigned to a service account, allowing it only to view Compute Engine instances, not alter them. This is useful for monitoring or reporting tasks performed by backend services.
+
+These roles were carefully selected to minimise access while still allowing necessary operations. I avoided broad roles like Editor or Owner to follow the principle of least privilege, giving only the exact access that was required, nothing more.
+
