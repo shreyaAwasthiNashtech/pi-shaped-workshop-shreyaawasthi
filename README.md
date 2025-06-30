@@ -106,3 +106,64 @@ Additionally, I created a custom role named TestRoleExercise2, which includes on
 
 These roles were carefully selected to minimise access while still allowing necessary operations. I avoided broad roles like Editor or Owner to follow the principle of least privilege, giving only the exact access that was required, nothing more.
 
+# Day3
+# Terraform Assignment: Create VM and Storage Bucket on GCP
+
+# Project Overview
+
+This project uses Terraform, an Infrastructure as Code (IaC) tool, to create two resources in Google Cloud Platform (GCP)
+- A Virtual Machine (VM)
+- A Cloud Storage Bucket
+
+Terraform helps us write code to manage cloud resources automatically, instead of creating them manually in the GCP Console.
+
+
+# Project File Structure
+
+1. main.tf
+
+This is the main configuration file. It does the following:
+- Sets up the GCP provider (connects to your GCP project).
+- Creates a virtual machine (google_compute_instance).
+- Creates a storage bucket (google_storage_bucket).
+- Uses a random ID to make the bucket name unique.
+
+2. variables.tf
+
+This file defines input variables. These make the code reusable and flexible.
+For example:
+project_id – your GCP project ID
+region – the region where resources will be created
+zone – the specific zone within the region
+
+We use var.project_id, var.region, and var.zone inside main.tf.
+
+3. outputs.tf
+
+This file shows the final results after Terraform finishes running.
+- It displays the public IP of the VM
+- It gives the URL of the storage bucket
+
+
+# How to Use This Project
+
+1. Install Terraform and Google Cloud SDK
+2. Authenticate GCP  
+   Run this command to allow Terraform to access your GCP:
+
+Initialize Terraform - terraform init
+Run Terraform - terraform apply
+
+Confirm with `yes` when asked.
+View the Outputs
+After a successful apply, you will see:
+1. Public IP of the VM
+2. Storage bucket URL
+
+# Terraform Benefits
+
+Automation: No need to manually click around in the GCP Console.
+Repeatable: You can run the same script again to create the same setup.
+Version Control: Your infrastructure is stored as code so it can be tracked in Git.
+Consistency: Avoid human errors by reusing the same code across environments.
+Easy Cleanup: With one command, you can destroy all the resources created.
