@@ -167,3 +167,44 @@ Repeatable: You can run the same script again to create the same setup.
 Version Control: Your infrastructure is stored as code so it can be tracked in Git.
 Consistency: Avoid human errors by reusing the same code across environments.
 Easy Cleanup: With one command, you can destroy all the resources created.
+
+
+**Assignment for Day 4: Advanced Terraform: Modules, Remote State, Workspaces**
+
+## Core Concept Questions
+
+# 1. What are the advantages of using Terraform modules in a microservice-oriented product team?
+
+Using Terraform modules makes your code reusable and organized. In a microservice team where each service may need similar infrastructure (like VMs, buckets, or databases), modules help you:
+>> Avoid code duplication by reusing logic across services
+>> Maintain consistency in how resources are created
+>> Make changes in one place and apply them everywhere
+>> Allow teams to work independently using shared building blocks
+
+It is like creating a toolkit that every team member can plug in and use without rewriting the same Terraform code.
+
+
+# 2. How do workspaces simplify multi-environment deployments?
+
+Workspaces allow you to use the same Terraform code to manage different environments like dev, staging and production, without creating multiple folders or files.
+Each workspace has its own Terraform state, which keeps environments isolated. For example:
+>> The dev workspace manages development resources
+>> The staging workspace manages test environment resources
+
+This helps you test infrastructure changes safely in dev before applying them to prod.
+
+
+# 3. Why is storing state remotely better than keeping it local, especially in a team setup?
+
+Terraform uses a ".tfstate" file to track the real-world infrastructure it manages. If you store this state file locally:
+>> It only exists on your machine
+>> Other teammates can’t see or share updates
+>> There's a risk of loss or corruption
+
+Storing the state remotely (like in a GCS bucket or S3) ensures:
+>> Everyone works from the same infrastructure snapshot
+>> State is backed up and versioned
+>> Team collaboration is safe and consistent
+
+It is essential for team-based, cloud-native infrastructure management.
+
