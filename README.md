@@ -168,8 +168,8 @@ Version Control: Your infrastructure is stored as code so it can be tracked in G
 Consistency: Avoid human errors by reusing the same code across environments.
 Easy Cleanup: With one command, you can destroy all the resources created.
 
-
-**Assignment for Day 4: Advanced Terraform: Modules, Remote State, Workspaces**
+# Day 4
+**Advanced Terraform: Modules, Remote State, Workspaces**
 
 ## Core Concept Questions
 
