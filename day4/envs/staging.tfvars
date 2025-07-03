@@ -1,0 +1,7 @@
+project      = "helical-clock-463918-c9"
+vm_name      = "staging-vm"
+bucket_name  = "staging-bucket"
+region       = "us-central1"
+zone         = "us-central1-a"
+machine_type = "e2-micro"
+vm_image     = "debian-cloud/debian-11"
