@@ -194,7 +194,7 @@ This shows how to structure Terraform code using **modules**, manage different e
         ├── variables.tf
         └── outputs.tf
 
-## Modularisation Explained
+# Modularisation Explained
 In this setup, we’ve split the infrastructure into reusable modules, one for creating a VM and another for creating a storage bucket.
 Why?
 - Keeps code clean and easy to manage
@@ -202,7 +202,7 @@ Why?
 - Easier to test, update, and maintain in the long run
 - Each module works like a mini blueprint that the main configuration can call with different values depending on the environment.
 
-## Using Workspaces
+# Using Workspaces
 Workspaces allow us to use the same codebase for multiple environments like dev, staging, and prod, without duplicating files.
 
 **Typical Workflow**
@@ -224,13 +224,13 @@ terraform apply -var-file="envs/staging.tfvars"
 
 Each workspace has its own isolated state, meaning actions in dev don’t affect staging or prod. This gives us control and safety.
 
-## Remote State with GCS Bucket
+# Remote State with GCS Bucket
 Instead of storing Terraform’s .tfstate file locally (which is risky in a team), we use a remote backend (GCS bucket) to:
 - Share infrastructure state across team members
 - Avoid conflicts and accidental overwrites
 - Enable state locking and history
 
-# backend.tf
+## backend.tf
 terraform {
   backend "gcs" {
     bucket = "my-terraform-state-bucket"
@@ -239,9 +239,9 @@ terraform {
 }
 
 
-## Core Concept Questions
+# Core Concept Questions
 
-# 1. What are the advantages of using Terraform modules in a microservice-oriented product team?
+## 1. What are the advantages of using Terraform modules in a microservice-oriented product team?
 
 Let's imagine we've got several teams working on different microservices, each needing similar bits of infrastructure like VMs, storage buckets, or databases. Rather than writing the same Terraform code over and over again, we can put that common setup into a module, like a reusable toolkit.
 
@@ -253,7 +253,7 @@ This way:
 5. It’s really about working smarter, not harder, and letting everyone move faster without stepping on each other's toes.
 
 
-# 2. How do workspaces simplify multi-environment deployments?
+## 2. How do workspaces simplify multi-environment deployments?
 
 The workspaces let us use one set of code to manage multiple environments, like dev, staging, and production. Instead of copying folders or duplicating files, we just switch to the right workspace and apply our changes.
 Each workspace keeps its own state, so what we do in dev doesn’t accidentally affect prod.
@@ -261,7 +261,7 @@ Thus, we might test a new VM in dev, tweak things, then switch to staging to do 
 This helps us test infrastructure changes safely in dev before applying them to prod.
 
 
-# 3. Why is storing state remotely better than keeping it local, especially in a team setup?
+## 3. Why is storing state remotely better than keeping it local, especially in a team setup?
 
 When Terraform runs, it keeps track of what it’s built using a state file. If that file is stored only on your laptop, it becomes a bit risky:
 Others can’t see or use it. It might get lost or go out of sync. You might accidentally apply outdated changes.
